@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  mcrm-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mcrm.backend
+    volumes:
+      - .:/app
+      - /app/node_modules
+    restart: always
+    ports:
+      - 34000:3000
+      - 9229:9229
+    depends_on:
+      - postgres-db
+    networks:
+      - mcrm-network
+
+  postgres-db:
+    image: postgres:13-alpine
+    container_name: mcrm.postgresql
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: mcrm
+      POSTGRES_PASSWORD: 5k3RpKcmM9B3
+      POSTGRES_DB: mcrm
+    networks:
+      - mcrm-network
+
+networks:
+  mcrm-network:
+
+volumes:
+  postgres-db:
