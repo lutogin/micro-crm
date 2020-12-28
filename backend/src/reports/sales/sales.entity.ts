@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { CollectionsEntity } from '../../products/collections/collections.entity';
 import { ProductTypeEntity } from '../../products/product-type/product-type.entity';
 
@@ -11,13 +11,16 @@ export class SalesEntity {
     type: 'varchar',
     nullable: false,
     length: 255,
+    name: 'part_number',
   })
-  part_number: string;
+  partNumber: string;
 
   @ManyToOne(() => CollectionsEntity, collection => collection.sales)
+  @JoinColumn({ name: 'collection_id' })
   collection: CollectionsEntity;
 
   @ManyToOne(() => ProductTypeEntity, productType => productType.sales)
+  @JoinColumn({ name: 'product_type_id' })
   productType: ProductTypeEntity;
 
   @Column({

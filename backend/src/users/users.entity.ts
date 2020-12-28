@@ -1,4 +1,3 @@
-import { first } from 'rxjs/operators';
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { UserRoleEnum } from './enum/user-role.enum';
 import { UnitsEntity } from './units/units.entity';
