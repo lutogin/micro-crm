@@ -1,6 +1,7 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { first } from 'rxjs/operators';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { UserRoleEnum } from './enum/user-role.enum';
-import { UnitEntity } from './units/unit.entity';
+import { UnitsEntity } from './units/units.entity';
 
 @Entity({ name: 'users' })
 export class UsersEntity {
@@ -16,12 +17,14 @@ export class UsersEntity {
   @Column({
     type: 'varchar',
     nullable: false,
+    name: 'first_name',
   })
   firstName: string;
 
   @Column({
     type: 'varchar',
     nullable: false,
+    name: 'last_name',
   })
   lastName: string;
 
@@ -32,6 +35,7 @@ export class UsersEntity {
   })
   role: UserRoleEnum;
 
-  @ManyToOne(() => UnitEntity, unit => unit.users)
-  unit: UnitEntity;
+  @ManyToOne(() => UnitsEntity, unit => unit.users)
+  @JoinColumn({ name: 'unit_id' })
+  unit: UnitsEntity;
 }

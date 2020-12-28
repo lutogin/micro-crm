@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { CollectionsEntity } from '../../products/collections/collections.entity';
-import { ProductTypesEntity } from '../../products/product-types/product-types.entity';
+import { ProductTypeEntity } from '../../products/product-type/product-type.entity';
 
 @Entity({ name: 'sales' })
 export class SalesEntity {
@@ -17,11 +17,11 @@ export class SalesEntity {
   @ManyToOne(() => CollectionsEntity, collection => collection.sales)
   collection: CollectionsEntity;
 
-  @ManyToOne(() => ProductTypesEntity, productType => productType.sales)
-  productType: ProductTypesEntity;
+  @ManyToOne(() => ProductTypeEntity, productType => productType.sales)
+  productType: ProductTypeEntity;
 
   @Column({
-    type: 'number',
+    type: 'integer',
     default: 1,
     nullable: false,
   })

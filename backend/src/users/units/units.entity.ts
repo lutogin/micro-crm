@@ -2,7 +2,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { UsersEntity } from '../users.entity';
 
 @Entity({ name: 'units' })
-export class UnitEntity {
+export class UnitsEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -13,6 +13,6 @@ export class UnitEntity {
   })
   title: string;
 
-  @OneToMany(() => UsersEntity, user => user.unit)
+  @OneToMany(() => UsersEntity, user => user.unit, { onDelete: 'CASCADE' })
   users: UsersEntity[];
 }

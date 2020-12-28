@@ -2,7 +2,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { SalesEntity } from '../../reports/sales/sales.entity';
 
 @Entity({ name: 'product-types' })
-export class ProductTypesEntity {
+export class ProductTypeEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

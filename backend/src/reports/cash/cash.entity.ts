@@ -12,7 +12,7 @@ export class CashEntity {
   date: string;
 
   @Column({
-    type: 'number',
+    type: 'integer',
     nullable: false,
   })
   cash: number;
